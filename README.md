@@ -1,5 +1,5 @@
 # TinySDR
-TinySDR is an open-source software-defined platform specialized for internet-of-things applications.
+TinySDR is the first software-defined radio platform specialized for internet-of-things networks.
 
 ## Hardware
 TinySDR schematic is in [hardware](hardware/schematic.pdf).
