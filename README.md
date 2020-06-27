@@ -1,4 +1,6 @@
-## TinySDR
+## Overview
+<img src="./images/tinysdr.jpg" alt="Azure Sphere Demo" width="321" height="300" align="right"/>
+
 TinySDR is the first software-defined radio platform specialized for internet-of-things networks.
 
 ### Hardware
@@ -15,3 +17,5 @@ TinySDR Bluetooth beacons and LoRa demos are in [demo](demo/).
 ### Contributers
   - [Mehrdad Hessar](https://github.com/mehrdadh)
   - [Ali Najafi](https://github.com/anajafi)
+  - [Vikram Iyer](https://github.com/viyer)
+  
