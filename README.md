@@ -1,5 +1,5 @@
 ## Overview
-<img src="./images/tinysdr.jpg" alt="Azure Sphere Demo" width="321" height="300" align="right"/>
+<img src="./images/tinysdr.jpg" alt="TinySDR Board" width="321" height="250" align="right"/>
 
 TinySDR is the first software-defined radio platform specialized for internet-of-things networks.
 
