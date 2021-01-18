@@ -18,3 +18,11 @@ After routing wires for all components we place polygons on each layer. In table
 | Inner 3 | Connected to GND. | <img src="./images/tinysdr_mid3.png" alt="Inner Layer 3 Polygon" width="300" align="center"/>|
 | Inner 4 | Connected to Power.<br /> Includes multiple polygons for various power planes. | <img src="./images/tinysdr_mid4.png" alt="Inner Layer 4 Polygons" width="300" align="center"/>|
 | Bottom | Connected to GND. | <img src="./images/tinysdr_bottom.png" alt="Bottom Layer Polygon" width="300" align="center"/>|
+
+## How to Use
+To use PCB files in this directory follow these steps:
+- Install the latest version of the [Altium Designer](https://www.altium.com/products/downloads)
+- Download and extract [PCB files](./pcb-tinysdr.zip)
+- Open project in Altium Designer
+
+Note: When you run design rule check you will see few erros regarding the `silk gaps` which you can ignore.
