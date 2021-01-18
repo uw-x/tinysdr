@@ -5,6 +5,8 @@ TinySDR hardware designed with a six layers FR4 PCB material. We need six layer 
 
 We place RF paths on the top layer with impedance control for Sub-GHz and 2.4 GHz frequencies.
 
+This PCB is originally designed with Altium Designer version 19 and most recently rendered by version 20.1.11. All the libraries that required to build the PCB are included in [PCB files](./pcb-tinysdr.zip).
+
 ## Layers
 After routing wires for all components we place polygons on each layer. In table below we show all the polygons and their purpose in our design.
 
