@@ -4,7 +4,7 @@
 TinySDR is the first software-defined radio platform specialized for internet-of-things networks.
 
 ### Hardware
-TinySDR schematic is in [hardware](hardware/schematic.pdf). You can download [PCB layout design files](hardware/pcb-tinysdr.zip) to build TinySDR hardware.
+TinySDR schematic is in [hardware](hardware/schematic.pdf). You can download [PCB design files](hardware/pcb-tinysdr.zip) to build TinySDR hardware.
 
 ### Firmware
 TinySDR firmware CCS project is in [firmware](firmware/).
