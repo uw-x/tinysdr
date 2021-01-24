@@ -16,7 +16,7 @@ After routing wires for all components we place polygons on each layer. In table
 | Inner 1 | Connected to GND. | <img src="../images/tinysdr_mid1.png" alt="Inner Layer 1 Polygon" width="300" align="center"/>|
 | Inner 2 | Connected to GND. | <img src="../images/tinysdr_mid2.png" alt="Inner Layer 2 Polygon" width="300" align="center"/>|
 | Inner 3 | Connected to GND. | <img src="../images/tinysdr_mid3.png" alt="Inner Layer 3 Polygon" width="300" align="center"/>|
-| Inner 4 | Connected to Power.<br /> Includes multiple polygons for various power planes. | <img src="./images/tinysdr_mid4.png" alt="Inner Layer 4 Polygons" width="300" align="center"/>|
+| Inner 4 | Connected to Power.<br /> Includes multiple polygons for various power planes. | <img src="../images/tinysdr_mid4.png" alt="Inner Layer 4 Polygons" width="300" align="center"/>|
 | Bottom | Connected to GND. | <img src="../images/tinysdr_bottom.png" alt="Bottom Layer Polygon" width="300" align="center"/>|
 
 ## How to Use
