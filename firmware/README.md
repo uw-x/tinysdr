@@ -9,3 +9,4 @@ To use this follow these steps:
 - Download [CCS](https://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html) software
 - Make sure to download MSP microcontroller compliler from CCS software
 - Download `codegenToolVersion=15.12.1.LTS` which is used to compile this firmware
+- Import CSS project using CSS import tool.
