@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<TComponentSet id="0" CurrentRevColumnWidth="100" NameColumnWidth="300" NextRevColumnWidth="100">
+  <VaultGUID>B7D15EC3-160A-466F-A46C-7801FE6295A7</VaultGUID>
+  <VaultName>Altium Content Vault</VaultName>
+  <RequiredParameters>
+    <TRequiredParameter id="1" ColumnWidth="100">
+      <HRID>Code_JEDEC</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="2" ColumnWidth="100">
+      <HRID>Comment</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="3" ColumnWidth="100">
+      <HRID>DatasheetVersion</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="4" ColumnWidth="100">
+      <HRID>Description</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="5" ColumnWidth="100">
+      <HRID>PackageDescription</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="6" ColumnWidth="100">
+      <HRID>PackageReference</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+    <TRequiredParameter id="7" ColumnWidth="100">
+      <HRID>PackageVersion</HRID>
+      <Visible>true</Visible>
+    </TRequiredParameter>
+  </RequiredParameters>
+  <RequiredModels>
+    <TRequiredModel id="8" ColumnWidth="100">
+      <HRID>PCBLIB</HRID>
+      <Visible>true</Visible>
+      <ModelKind>PCBLIB</ModelKind>
+    </TRequiredModel>
+    <TRequiredModel id="9" ColumnWidth="100">
+      <HRID>SCHLIB</HRID>
+      <Visible>true</Visible>
+      <ModelKind>SCHLIB</ModelKind>
+    </TRequiredModel>
+  </RequiredModels>
+  <ModelLinks>
+    <TModelLink id="10">
+      <HRID>PCC-0013-00013-1</HRID>
+      <VaultGUID>B7D15EC3-160A-466F-A46C-7801FE6295A7</VaultGUID>
+      <ItemGUID>7B680EAC-2582-4F9D-95F4-2B4408C951FD</ItemGUID>
+      <ModelKind>PCBLIB</ModelKind>
+      <RevisionGUID>C1BC24C1-F525-4112-A372-358B4BC08F4D</RevisionGUID>
+    </TModelLink>
+    <TModelLink id="11">
+      <HRID>SYM-0013-00151-1</HRID>
+      <VaultGUID>B7D15EC3-160A-466F-A46C-7801FE6295A7</VaultGUID>
+      <ItemGUID>B7A9B309-9738-460E-B909-5256A360A86A</ItemGUID>
+      <ModelKind>SCHLIB</ModelKind>
+      <RevisionGUID>B2B15F1E-091B-4922-A065-C383365B44DA</RevisionGUID>
+    </TModelLink>
+  </ModelLinks>
+  <PartChoiceListLinks StateIndex="2">
+    <ComponentSet href="#0"/>
+  </PartChoiceListLinks>
+  <TopGroup id="12" StateIndex="2" Collapsed="false">
+    <GUID>40EF8928-E464-4975-B0ED-8600C1FBDBAF</GUID>
+    <Parameters/>
+    <ModelChoices/>
+    <ComponentSet href="#0"/>
+    <Groups/>
+    <ComponentDefinitions>
+      <TComponentDefinition StateIndex="2">
+        <HRID>CMP-0101-00034</HRID>
+        <GUID>D8E60D38-07DF-4158-A9C9-5F9748ED06A7</GUID>
+        <ParentGroup href="#12"/>
+        <Parameters>
+          <TParameter>
+            <RequiredParameter href="#2"/>
+            <Value>AGLN250V2-CSG81I</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#4"/>
+            <Value>IGLOO nano Low-Power Flash 1.2 to 1.5V FPGA with Flash*Freeze, 60 User IOs, 250K System Gates, 1Kbit Flash ROM, 81-Pin CSP, Industrial Grade, Pb-Free</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#5"/>
+            <Value>81-Ball Chip Scale Ball Grid Array 0.5 mm Pitch (CS81)</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#1"/>
+            <Value>MO-195-AB</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#6"/>
+            <Value>CS81</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#3"/>
+            <Value>v0.8, Jan-2010</Value>
+          </TParameter>
+          <TParameter>
+            <RequiredParameter href="#7"/>
+            <Value>ver11.2, Nov-2009</Value>
+          </TParameter>
+        </Parameters>
+        <ModelChoices>
+          <TModelChoice>
+            <RequiredModel href="#9"/>
+            <ModelLink href="#11"/>
+          </TModelChoice>
+          <TModelChoice>
+            <RequiredModel href="#8"/>
+            <ModelLink href="#10"/>
+          </TModelChoice>
+        </ModelChoices>
+        <ItemHRID>CMP-0101-00034</ItemHRID>
+        <RevisionGUID>2F53B818-B98E-419E-AD40-839699035D4E</RevisionGUID>
+        <RevisionId>1</RevisionId>
+      </TComponentDefinition>
+    </ComponentDefinitions>
+  </TopGroup>
+  <ShowReleaseState>false</ShowReleaseState>
+</TComponentSet>

@@ -1,0 +1,13 @@
+(sym_lib_table
+  (lib (name "tinysdr_TopLevel-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_TopLevel-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_Backbone-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_Backbone-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_Connectors-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_Connectors-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_FPGA-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_FPGA-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_IQ_Radio-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_IQ_Radio-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_MCU-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_MCU-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_Memories-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_Memories-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_Power-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_Power-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "tinysdr_RF-altium-import")(type "KiCad")(uri "${KIPRJMOD}/tinysdr_RF-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "XSDR_FPGA_back-altium-import")(type "KiCad")(uri "${KIPRJMOD}/XSDR_FPGA_back-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "XSDR_Power_Manage-altium-import")(type "KiCad")(uri "${KIPRJMOD}/XSDR_Power_Manage-altium-import.kicad_sym")(options "")(descr ""))
+)
