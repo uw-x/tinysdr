@@ -1,6 +1,6 @@
 /******************************************************************************
 *
-* Copyright (C) 2012 - 2016 Texas Instruments Incorporated - http://www.ti.com/
+* Copyright (C) 2012 - 2017 Texas Instruments Incorporated - http://www.ti.com/
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
@@ -32,9 +32,13 @@
 *
 * Default linker command file for Texas Instruments MSP432P401R
 *
-* File creation date: 2016-01-26
+* File creation date: 12/06/17
 *
 *****************************************************************************/
+/* Suppress warnings and errors:                                            */
+/* #10199-D CRC table operator (crc_table_for_<>) ignored:
+    CRC table operator cannot be associated with empty output section       */
+--diag_suppress=10199
 
 --retain=flashMailbox
 
@@ -76,6 +80,7 @@ MEMORY
 
 SECTIONS
 {
+#ifndef gen_crc_table
     .intvecs:   > 0x00000000
     .text   :   > MAIN
     .const  :   > MAIN
@@ -84,14 +89,44 @@ SECTIONS
     .init_array   :     > MAIN
     .binit        : {}  > MAIN
 
+    /* The following sections show the usage of the INFO flash memory        */
+    /* INFO flash memory is intended to be used for the following            */
+    /* device specific purposes:                                             */
+    /* Flash mailbox for device security operations                          */
     .flashMailbox : > 0x00200000
+    /* TLV table for device identification and characterization              */
+    .tlvTable     : > 0x00201000
+    /* BSL area for device bootstrap loader                                  */
+    .bslArea      : > 0x00202000
+#else
+    .intvecs:   > 0x00000000, crc_table(crc_table_for_intvecs)
+    .text   :   > MAIN, crc_table(crc_table_for_text)
+    .const  :   > MAIN, crc_table(crc_table_for_const)
+    .cinit  :   > MAIN, crc_table(crc_table_for_cinit)
+    .pinit  :   > MAIN, crc_table(crc_table_for_pinit)
+    .init_array   :     > MAIN, crc_table(crc_table_for_init_array)
+    .binit        : {}  > MAIN, crc_table(crc_table_for_binit)
+
+    /* The following sections show the usage of the INFO flash memory        */
+    /* INFO flash memory is intended to be used for the following            */
+    /* device specific purposes:                                             */
+    /* Flash mailbox for device security operations                          */
+    .flashMailbox : > 0x00200000, crc_table(crc_table_for_flashMailbox)
+    /* TLV table for device identification and characterization              */
+    /* This one is read only memory in flash - generate no CRC               */
+    .tlvTable     : > 0x00201000
+    /* BSL area for device bootstrap loader                                  */
+    .bslArea      : > 0x00202000, crc_table(crc_table_for_bslArea)
+    .TI.crctab    : > MAIN
+#endif
 
     .vtable :   > 0x20000000
     .data   :   > SRAM_DATA
     .bss    :   > SRAM_DATA
     .sysmem :   > SRAM_DATA
     .stack  :   > SRAM_DATA (HIGH)
-	flashBuff: 	> 0x00002000
+    flashBuff:  > 0x00002000
+
 #ifdef  __TI_COMPILER_VERSION__
 #if     __TI_COMPILER_VERSION__ >= 15009000
     .TI.ramfunc : {} load=MAIN, run=SRAM_CODE, table(BINIT)

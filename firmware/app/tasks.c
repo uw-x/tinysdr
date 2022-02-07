@@ -21,7 +21,7 @@ Maintainer: Mehrdad Hessar, Ali Najafi
 #include <driverlib.h>
 #include <settings.h>
 #include <libraries/clock.h>
-#include <testmini.h>
+//#include <testmini.h>
 #include <fpga.h>
 #include <ble.h>
 #include <libraries/i2c.h>
@@ -94,18 +94,18 @@ bool BR_last_packet;
 /**########################External functions############################**/
 void task_fpga(void)
 {
-	MAP_WDT_A_holdTimer();
+    MAP_WDT_A_holdTimer();
 
-	ClockInit();
+    ClockInit();
     BoardInitMcu();
-	PWR_D2_Set(PWR_D2_2_50);
-	GpioWrite(&TinySDR.PWR_3P0, 1);
-	GpioWrite(&TinySDR.LED_D1, 1);
-//	GpioWrite(&TinySDR.LED_D2, 1);
+    PWR_D2_Set(PWR_D2_2_50);
+    GpioWrite(&TinySDR.PWR_3P0, 1);
+    GpioWrite(&TinySDR.LED_D1, 1);
+//  GpioWrite(&TinySDR.LED_D2, 1);
 
-	fpgaSetConfig(0);
-	delay_ms(2000);
-	fpgaReset();
+    fpgaSetConfig(0);
+    delay_ms(2000);
+    fpgaReset();
 }
 
 
@@ -132,19 +132,22 @@ void task_ext_flash(void)
 //	FlashMassWrite(99962);
 //	FlashMassCheck(99962);
 
-	/* Reading Flash*/
-	uint8_t flash_addr[3];
-	flash_addr[0] = 0x00;
-	flash_addr[1] = 0x01;
-	flash_addr[2] = 0x00;
-	uint8_t flash_data[1024];
-	FlashReadData(flash_addr, flash_data, 1024);
+	FlashWriteBin();
+//	FlashMassCheck(99142);
 
-	uint32_t ii;
-	for(ii=0; ii<250; ii++)
-	{
-		printf("D: %x\n", flash_data[ii]);
-	}
+	/* Reading Flash*/
+//	uint8_t flash_addr[3];
+//	flash_addr[0] = 0x00;
+//	flash_addr[1] = 0x01;
+//	flash_addr[2] = 0x00;
+//	uint8_t flash_data[1024];
+//	FlashReadData(flash_addr, flash_data, 1024);
+//
+//	uint32_t ii;
+//	for(ii=0; ii<250; ii++)
+//	{
+//		printf("D: %x\n", flash_data[ii]);
+//	}
 }
 
 

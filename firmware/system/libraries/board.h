@@ -32,6 +32,9 @@ typedef struct
 	Gpio_t		CFG1;
 	Gpio_t		CFG2;
 	Gpio_t		V_FPGA_EN;	//same as LED1 in this board
+	Gpio_t		DONE;
+	Gpio_t		INITn;
+	Gpio_t	  PRGMn;
 	Spi_t		SPI;
 }FPGA_t;
 

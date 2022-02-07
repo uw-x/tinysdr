@@ -1,6 +1,6 @@
 /******************************************************************************
 * 
-*  Copyright (C) 2012 - 2016 Texas Instruments Incorporated - http://www.ti.com/ 
+*  Copyright (C) 2012 - 2017 Texas Instruments Incorporated - http://www.ti.com/ 
 * 
 *  Redistribution and use in source and binary forms, with or without 
 *  modification, are permitted provided that the following conditions 
@@ -30,18 +30,14 @@
 *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
 * 
-*  MSP432P401R Interrupt Vector Table and startup code for CCS TI ARM
+*  MSP432P401R Interrupt Vector Table
 * 
 *****************************************************************************/
 
 #include <stdint.h>
 
-/* Forward declaration of the default fault handlers. */
-static void resetISR(void);
-static void nmiISR(void);
-static void faultISR(void);
-static void defaultISR(void);
-
+/* Linker variable that marks the top of the stack. */
+extern unsigned long __STACK_END;
 
 /* External declaration for the reset handler that is to be called when the */
 /* processor is started                                                     */
@@ -50,24 +46,63 @@ extern void _c_int00(void);
 /* External declaration for system initialization function                  */
 extern void SystemInit(void);
 
-/* Linker variable that marks the top of the stack. */
-extern unsigned long __STACK_END;
+/* Forward declaration of the default fault handlers. */
+void Default_Handler            (void) __attribute__((weak));
+extern void Reset_Handler       (void) __attribute__((weak));
 
+/* Cortex-M4 Processor Exceptions */
+extern void NMI_Handler         (void) __attribute__((weak, alias("Default_Handler")));
+extern void HardFault_Handler   (void) __attribute__((weak, alias("Default_Handler")));
+extern void MemManage_Handler   (void) __attribute__((weak, alias("Default_Handler")));
+extern void BusFault_Handler    (void) __attribute__((weak, alias("Default_Handler")));
+extern void UsageFault_Handler  (void) __attribute__((weak, alias("Default_Handler")));
+extern void SVC_Handler         (void) __attribute__((weak, alias("Default_Handler")));
+extern void DebugMon_Handler    (void) __attribute__((weak, alias("Default_Handler")));
+extern void PendSV_Handler      (void) __attribute__((weak, alias("Default_Handler")));
 
-/* External declarations for the interrupt handlers used by the application. */
-/* To be added by user */
-
-/* External declarations for the interrupt handlers used by the application. */
-extern void EUSCIA0_IRQHandler(void);
-extern void EUSCIA1_IRQHandler(void);
-extern void EUSCIA2_IRQHandler(void);
-extern void EUSCIB0_IRQHandler(void);
-extern void EUSCIB2_IRQHandler(void);
-extern void EUSCIB3_IRQHandler(void);
-
-extern void PORT6_IRQHandler(void);
-extern void TA1_0_IRQHandler(void);
-
+/* device specific interrupt handler */
+extern void SysTick_Handler     (void) __attribute__((weak,alias("Default_Handler")));
+extern void PSS_IRQHandler      (void) __attribute__((weak,alias("Default_Handler")));
+extern void CS_IRQHandler       (void) __attribute__((weak,alias("Default_Handler")));
+extern void PCM_IRQHandler      (void) __attribute__((weak,alias("Default_Handler")));
+extern void WDT_A_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void FPU_IRQHandler      (void) __attribute__((weak,alias("Default_Handler")));
+extern void FLCTL_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void COMP_E0_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void COMP_E1_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA0_0_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA0_N_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA1_0_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA1_N_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA2_0_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA2_N_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA3_0_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void TA3_N_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIA0_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIA1_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIA2_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIA3_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIB0_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIB1_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIB2_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void EUSCIB3_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void ADC14_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void T32_INT1_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void T32_INT2_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void T32_INTC_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void AES256_IRQHandler   (void) __attribute__((weak,alias("Default_Handler")));
+extern void RTC_C_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void DMA_ERR_IRQHandler  (void) __attribute__((weak,alias("Default_Handler")));
+extern void DMA_INT3_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void DMA_INT2_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void DMA_INT1_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void DMA_INT0_IRQHandler (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT1_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT2_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT3_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT4_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT5_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
+extern void PORT6_IRQHandler    (void) __attribute__((weak,alias("Default_Handler")));
 
 /* Interrupt vector table.  Note that the proper constructs must be placed on this to */
 /* ensure that it ends up at physical address 0x0000.0000 or at the start of          */
@@ -77,96 +112,73 @@ extern void TA1_0_IRQHandler(void);
 void (* const interruptVectors[])(void) =
 {
     (void (*)(void))((uint32_t)&__STACK_END),
-                                            /* The initial stack pointer */
-    resetISR,                               /* The reset handler         */
-    nmiISR,                                 /* The NMI handler           */
-    faultISR,                               /* The hard fault handler    */
-    defaultISR,                             /* The MPU fault handler     */
-    defaultISR,                             /* The bus fault handler     */
-    defaultISR,                             /* The usage fault handler   */
-    0,                                      /* Reserved                  */
-    0,                                      /* Reserved                  */
-    0,                                      /* Reserved                  */
-    0,                                      /* Reserved                  */
-    defaultISR,                             /* SVCall handler            */
-    defaultISR,                             /* Debug monitor handler     */
-    0,                                      /* Reserved                  */
-    defaultISR,                             /* The PendSV handler        */
-    defaultISR,                             /* The SysTick handler       */
-    defaultISR,                             /* PSS ISR                   */
-    defaultISR,                             /* CS ISR                    */
-    defaultISR,                             /* PCM ISR                   */
-    defaultISR,                             /* WDT ISR                   */
-    defaultISR,                             /* FPU ISR                   */
-    defaultISR,                             /* FLCTL ISR                 */
-    defaultISR,                             /* COMP0 ISR                 */
-    defaultISR,                             /* COMP1 ISR                 */
-	defaultISR,                      		/* TA0_0 ISR                 */
-    defaultISR,                             /* TA0_N ISR                 */
-	TA1_0_IRQHandler,                       /* TA1_0 ISR                 */
-    defaultISR,                             /* TA1_N ISR                 */
-    defaultISR,                             /* TA2_0 ISR                 */
-    defaultISR,                             /* TA2_N ISR                 */
-    defaultISR,                             /* TA3_0 ISR                 */
-    defaultISR,                             /* TA3_N ISR                 */
-	EUSCIA0_IRQHandler,                    	/* EUSCIA0 ISR               */
-	EUSCIA1_IRQHandler,                    	/* EUSCIA1 ISR               */
-	EUSCIA2_IRQHandler,                     /* EUSCIA2 ISR               */
-    defaultISR,                             /* EUSCIA3 ISR               */
-	EUSCIB0_IRQHandler,                   	/* EUSCIB0 ISR               */
-    defaultISR,                             /* EUSCIB1 ISR               */
-	EUSCIB2_IRQHandler,                     /* EUSCIB2 ISR               */
-	EUSCIB3_IRQHandler,                     /* EUSCIB3 ISR               */
-    defaultISR,                             /* ADC14 ISR                 */
-    defaultISR,                             /* T32_INT1 ISR              */
-    defaultISR,                             /* T32_INT2 ISR              */
-    defaultISR,                             /* T32_INTC ISR              */
-    defaultISR,                             /* AES ISR                   */
-    defaultISR,                             /* RTC ISR                   */
-    defaultISR,                             /* DMA_ERR ISR               */
-    defaultISR,                             /* DMA_INT3 ISR              */
-    defaultISR,                             /* DMA_INT2 ISR              */
-    defaultISR,                             /* DMA_INT1 ISR              */
-    defaultISR,                             /* DMA_INT0 ISR              */
-    defaultISR,                             /* PORT1 ISR                 */
-    defaultISR,                             /* PORT2 ISR                 */
-    defaultISR,                             /* PORT3 ISR                 */
-    defaultISR,                             /* PORT4 ISR                 */
-    defaultISR,                             /* PORT5 ISR                 */
-	PORT6_IRQHandler,                      	/* PORT6 ISR                 */
-    defaultISR,                             /* Reserved 41               */
-    defaultISR,                             /* Reserved 42               */
-    defaultISR,                             /* Reserved 43               */
-    defaultISR,                             /* Reserved 44               */
-    defaultISR,                             /* Reserved 45               */
-    defaultISR,                             /* Reserved 46               */
-    defaultISR,                             /* Reserved 47               */
-    defaultISR,                             /* Reserved 48               */
-    defaultISR,                             /* Reserved 49               */
-    defaultISR,                             /* Reserved 50               */
-    defaultISR,                             /* Reserved 51               */
-    defaultISR,                             /* Reserved 52               */
-    defaultISR,                             /* Reserved 53               */
-    defaultISR,                             /* Reserved 54               */
-    defaultISR,                             /* Reserved 55               */
-    defaultISR,                             /* Reserved 56               */
-    defaultISR,                             /* Reserved 57               */
-    defaultISR,                             /* Reserved 58               */
-    defaultISR,                             /* Reserved 59               */
-    defaultISR,                             /* Reserved 60               */
-    defaultISR,                             /* Reserved 61               */
-    defaultISR,                             /* Reserved 62               */
-    defaultISR                              /* Reserved 63               */
+                                           /* The initial stack pointer */
+    Reset_Handler,                         /* The reset handler         */
+    NMI_Handler,                           /* The NMI handler           */
+    HardFault_Handler,                     /* The hard fault handler    */
+    MemManage_Handler,                     /* The MPU fault handler     */
+    BusFault_Handler,                      /* The bus fault handler     */
+    UsageFault_Handler,                    /* The usage fault handler   */
+    0,                                     /* Reserved                  */
+    0,                                     /* Reserved                  */
+    0,                                     /* Reserved                  */
+    0,                                     /* Reserved                  */
+    SVC_Handler,                           /* SVCall handler            */
+    DebugMon_Handler,                      /* Debug monitor handler     */
+    0,                                     /* Reserved                  */
+    PendSV_Handler,                        /* The PendSV handler        */
+    SysTick_Handler,                       /* The SysTick handler       */
+    PSS_IRQHandler,                        /* PSS Interrupt             */
+    CS_IRQHandler,                         /* CS Interrupt              */
+    PCM_IRQHandler,                        /* PCM Interrupt             */
+    WDT_A_IRQHandler,                      /* WDT_A Interrupt           */
+    FPU_IRQHandler,                        /* FPU Interrupt             */
+    FLCTL_IRQHandler,                      /* Flash Controller Interrupt*/
+    COMP_E0_IRQHandler,                    /* COMP_E0 Interrupt         */
+    COMP_E1_IRQHandler,                    /* COMP_E1 Interrupt         */
+    TA0_0_IRQHandler,                      /* TA0_0 Interrupt           */
+    TA0_N_IRQHandler,                      /* TA0_N Interrupt           */
+    TA1_0_IRQHandler,                      /* TA1_0 Interrupt           */
+    TA1_N_IRQHandler,                      /* TA1_N Interrupt           */
+    TA2_0_IRQHandler,                      /* TA2_0 Interrupt           */
+    TA2_N_IRQHandler,                      /* TA2_N Interrupt           */
+    TA3_0_IRQHandler,                      /* TA3_0 Interrupt           */
+    TA3_N_IRQHandler,                      /* TA3_N Interrupt           */
+    EUSCIA0_IRQHandler,                    /* EUSCIA0 Interrupt         */
+    EUSCIA1_IRQHandler,                    /* EUSCIA1 Interrupt         */
+    EUSCIA2_IRQHandler,                    /* EUSCIA2 Interrupt         */
+    EUSCIA3_IRQHandler,                    /* EUSCIA3 Interrupt         */
+    EUSCIB0_IRQHandler,                    /* EUSCIB0 Interrupt         */
+    EUSCIB1_IRQHandler,                    /* EUSCIB1 Interrupt         */
+    EUSCIB2_IRQHandler,                    /* EUSCIB2 Interrupt         */
+    EUSCIB3_IRQHandler,                    /* EUSCIB3 Interrupt         */
+    ADC14_IRQHandler,                      /* ADC14 Interrupt           */
+    T32_INT1_IRQHandler,                   /* T32_INT1 Interrupt        */
+    T32_INT2_IRQHandler,                   /* T32_INT2 Interrupt        */
+    T32_INTC_IRQHandler,                   /* T32_INTC Interrupt        */
+    AES256_IRQHandler,                     /* AES256 Interrupt          */
+    RTC_C_IRQHandler,                      /* RTC_C Interrupt           */
+    DMA_ERR_IRQHandler,                    /* DMA_ERR Interrupt         */
+    DMA_INT3_IRQHandler,                   /* DMA_INT3 Interrupt        */
+    DMA_INT2_IRQHandler,                   /* DMA_INT2 Interrupt        */
+    DMA_INT1_IRQHandler,                   /* DMA_INT1 Interrupt        */
+    DMA_INT0_IRQHandler,                   /* DMA_INT0 Interrupt        */
+    PORT1_IRQHandler,                      /* Port1 Interrupt           */
+    PORT2_IRQHandler,                      /* Port2 Interrupt           */
+    PORT3_IRQHandler,                      /* Port3 Interrupt           */
+    PORT4_IRQHandler,                      /* Port4 Interrupt           */
+    PORT5_IRQHandler,                      /* Port5 Interrupt           */
+    PORT6_IRQHandler                       /* Port6 Interrupt           */
 };
 
-
+/* Forward declaration of the default fault handlers. */
 /* This is the code that gets called when the processor first starts execution */
 /* following a reset event.  Only the absolutely necessary set is performed,   */
 /* after which the application supplied entry() routine is called.  Any fancy  */
 /* actions (such as making decisions based on the reset cause register, and    */
 /* resetting the bits in that register) are left solely in the hands of the    */
 /* application.                                                                */
-void resetISR(void)
+void Reset_Handler(void)
 {
     SystemInit();
 
@@ -175,56 +187,20 @@ void resetISR(void)
           "    b.w     _c_int00");
 }
 
-/* This is the code that gets called when the processor receives a NMI.  This  */
-/* simply enters an infinite loop, preserving the system state for examination */
-/* by a debugger.                                                              */
-static void nmiISR(void)
-{
-    /* Fault trap exempt from ULP advisor */
-    #pragma diag_push
-    #pragma CHECK_ULP("-2.1")
-
-    /* Enter an infinite loop. */
-    while(1)
-    {
-    }
-
-    #pragma diag_pop
-}
-
-
-/* This is the code that gets called when the processor receives a fault        */
-/* interrupt.  This simply enters an infinite loop, preserving the system state */
-/* for examination by a debugger.                                               */
-static void faultISR(void)
-{
-    /* Fault trap exempt from ULP advisor */
-    #pragma diag_push
-    #pragma CHECK_ULP("-2.1")
-
-    /* Enter an infinite loop. */
-    while(1)
-    {
-    }
-
-    #pragma diag_pop
-}
-
 
 /* This is the code that gets called when the processor receives an unexpected  */
 /* interrupt.  This simply enters an infinite loop, preserving the system state */
 /* for examination by a debugger.                                               */
-static void defaultISR(void)
+void Default_Handler(void)
 {
     /* Fault trap exempt from ULP advisor */
     #pragma diag_push
     #pragma CHECK_ULP("-2.1")
 
-    /* Enter an infinite loop. */
-    while(1)
-    {
-    }
+	/* Enter an infinite loop. */
+	while(1)
+	{
+	}
 
-    #pragma diag_pop
+	#pragma diag_pop
 }
-

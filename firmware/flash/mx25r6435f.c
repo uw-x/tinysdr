@@ -249,6 +249,8 @@ void FlashMassCheck(uint32_t flashSize)
 	uint8_t addr[3];
 	uint8_t dataChunk[256];
 	ind = 0;
+	FILE *fp_out;
+	fp_out = fopen("blinky2.bin", "wb");
 
 	while(ind < flashSize)
 	{
@@ -263,32 +265,84 @@ void FlashMassCheck(uint32_t flashSize)
 		#endif
 		/* read page */
 		FlashReadData(addr, dataChunk, 256);
+		fwrite(dataChunk, 1, 256, fp_out);
 
-		for(ii=0; ii<256; ii++)
-		{
-			if (ind + ii < flashSize)
-			{
-				if (dataChunk[ii] != flash[ind + ii])
-				{
-					printf("ind: %x\tii: %x\n", ind, ii);
-					printf("m: %x\t orig:\t%x\n", dataChunk[ii], flash[ind + ii]);
-				}
-			}
-			else
-			{
-				if (dataChunk[ii] != 0xFF)
-				{
-					printf("ind: %x\tii: %x\n", ind, ii);
-					printf("m: %x\t orig:\t%x\n", dataChunk[ii], 0xFF);
-				}
-			}
-			#ifdef DEBUG
-			printf("m: %x\t orig:\t%x\n", dataChunk[ii], flash[ind + ii]);
-			#endif
-		}
+
+
+//		for(ii=0; ii<256; ii++)
+//		{
+//
+//			//printf("%x",dataChunk[ii]);
+//			// if (ind + ii < flashSize)
+//			// {
+//			// 	if (dataChunk[ii] != flash[ind + ii])
+//			// 	{
+//			// 		// printf("ind: %x\tii: %x\n", ind, ii);
+//			// 		// printf("m: %x\t orig:\t%x\n", dataChunk[ii], flash[ind + ii]);
+//			// 	}
+//			// }
+//			// else
+//			// {
+//			// 	if (dataChunk[ii] != 0xFF)
+//			// 	{
+//			// 		// printf("ind: %x\tii: %x\n", ind, ii);
+//			// 		// printf("m: %x\t orig:\t%x\n", dataChunk[ii], 0xFF);
+//			// 	}
+//			// }
+//			// #ifdef DEBUG
+//			// printf("m: %x\t orig:\t%x\n", dataChunk[ii], flash[ind + ii]);
+//			// #endif
+//		}
 
 		/* update index */
 		ind = ind + 256;
+//		printf("\n");
 	}
+	fclose(fp_out);
+	printf("\ndone\n");
 }
 
+void FlashWriteBin(void)
+//{
+//    printf("writing lora.bin to flash...\n");
+//    FILE *fp_in;
+//    unsigned char buffer1[256];
+//    size_t bytes;
+//    fp_in = fopen("lora6.bin", "rb");
+//    bytes = fread(buffer1, 1, 256, fp_in);
+//    fclose(fp_in);
+//    printf("%u",bytes);
+//
+//}
+{
+	uint32_t ind;
+	uint32_t ii;
+    size_t bytes;
+    printf("writing lora.bin to flash...\n");
+    FILE *fp_in;
+    unsigned char buffer1[256];
+    fp_in = fopen("lora.bin", "rb");
+	ind = 0;
+     while ((bytes = fread(buffer1, 1, 256, fp_in)) != 0)
+	 {
+	 	if (ind > 0x100000)
+	 	{
+	 		break;
+	 	}
+	 	if (bytes < FLASH_Page_Size)
+	 	{
+	 	    /* update data */
+	 		for(ii=bytes; ii<FLASH_Page_Size; ii++)
+	 		{
+	 			buffer1[ii] = 0xFF;
+	 		}
+	 	}
+
+	 	FlashEraseWritePage(ind, buffer1, FLASH_Page_Size);
+	 	/* update index */
+	 	ind = ind + 256;
+	 }
+    fclose(fp_in);
+    printf("%u",bytes);
+    printf("done. wrote %u to flash",ind);
+}

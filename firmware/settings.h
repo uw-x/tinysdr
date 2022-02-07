@@ -164,6 +164,9 @@ const static MSP_PIN_t PIN_MSP_PJ_5		= {PJ_5, 0x0B};
 	#define	PIN_FPGA_CFG0					PIN_MSP_P8_1
 	#define	PIN_FPGA_CFG1					PIN_MSP_P8_0
 	#define	PIN_FPGA_CFG2					PIN_MSP_P1_6
+	#define	PIN_FPGA_DONE					PIN_MSP_P5_1
+	#define	PIN_FPGA_INITn					PIN_MSP_P4_7
+	#define	PIN_FPGA_PRGMn					PIN_MSP_P5_0
 
 	#define PIN_FPGA_MISO					PIN_MSP_P1_2
 	#define PIN_FPGA_MOSI					PIN_MSP_P1_3

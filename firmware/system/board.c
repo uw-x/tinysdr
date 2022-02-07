@@ -188,6 +188,10 @@ void BoardIoInit( void )
     GpioInit(&TinySDR.FPGA.CFG2, 	PIN_FPGA_CFG2.portOut, 	PIN_FPGA_CFG2.portIn, 	PIN_FPGA_CFG2.portDir, 	PIN_FPGA_CFG2.pin, 	PIN_FPGA_CFG2.portNumber, 	PIN_OUTPUT, false);
     GpioInit(&TinySDR.FPGA.SPI.NSS, PIN_FPGA_CS.portOut, 	PIN_FPGA_CS.portIn, 	PIN_FPGA_CS.portDir, 	PIN_FPGA_CS.pin, 	PIN_FPGA_CS.portNumber, 	PIN_OUTPUT, true);
 
+    GpioInit(&TinySDR.FPGA.PRGMn,   PIN_FPGA_DONE.portOut,  PIN_FPGA_DONE.portIn,   PIN_FPGA_DONE.portDir,  PIN_FPGA_DONE.pin,  PIN_FPGA_DONE.portNumber,   PIN_OUTPUT, true);
+    GpioInit(&TinySDR.FPGA.DONE,    PIN_FPGA_DONE.portOut,  PIN_FPGA_DONE.portIn,   PIN_FPGA_DONE.portDir,  PIN_FPGA_DONE.pin,  PIN_FPGA_DONE.portNumber,   PIN_INPUT, false);
+    GpioInit(&TinySDR.FPGA.INITn,   PIN_FPGA_INITn.portOut, PIN_FPGA_INITn.portIn,  PIN_FPGA_INITn.portDir, PIN_FPGA_INITn.pin, PIN_FPGA_INITn.portNumber,  PIN_INPUT, false);
+
     //added for power measurement
 //    GpioInit(&TinySDR.FPGA.SPI.MISO, 	PIN_FPGA_MISO.portOut, 	PIN_FPGA_MISO.portIn, 	PIN_FPGA_MISO.portDir, 	PIN_FPGA_MISO.pin, 	PIN_FPGA_MISO.portNumber, 	PIN_INPUT, 	false);
 //    GpioInit(&TinySDR.FPGA.SPI.MOSI, 	PIN_FPGA_MOSI.portOut, 	PIN_FPGA_MOSI.portIn, 	PIN_FPGA_MOSI.portDir, 	PIN_FPGA_MOSI.pin, 	PIN_FPGA_MOSI.portNumber, 	PIN_OUTPUT, false);

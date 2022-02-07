@@ -20,6 +20,7 @@ Maintainer:	Mehrdad Hessar, Ali Najafi
 #include <libraries/spi.h>
 #include <libraries/gpio.h>
 #include <libraries/board.h>
+#include <stdio.h>
 
 /**#############################CMD#############################**/
 #define	FLASH_CMD_NOP		0x00
@@ -68,6 +69,7 @@ bool FlashEraseSector(uint32_t ind);
 void FlashSoftwareReset(void);
 void FlashMassWrite(uint32_t flashSize);
 void FlashMassCheck(uint32_t flashSize);
+void FlashWriteBin(void);
 
 
 #endif
