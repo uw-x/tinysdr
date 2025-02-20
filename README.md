@@ -11,7 +11,7 @@ TinySDR firmware CCS project is in [firmware](firmware/).
 
 ### FPGA Demos
 TinySDR Bluetooth beacons and LoRa demos are in [demo](demo/).
-- [LoRa Modulator](https://github.com/uw-x/lora-modulator)
+- [LoRa Modulator](https://github.com/mehrdadh/lora-modulator)
 - [FSK Modulator](https://github.com/mehrdadh/fsk-modulator)
 
 ### Contributers
@@ -19,3 +19,5 @@ TinySDR Bluetooth beacons and LoRa demos are in [demo](demo/).
   - [Ali Najafi](https://github.com/anajafi)
   - [Vikram Iyer](https://github.com/viyer)
   
+## License
+This software is licensed under the Non-Commercial Affero General Public License (NC-AGPL-3.0). Commercial use is strictly prohibited without explicit permission from the authors.
